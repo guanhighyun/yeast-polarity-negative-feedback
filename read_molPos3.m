@@ -1,11 +1,11 @@
-function [t,positions] = read_molPos3_bistability_NF(filename,nframes)
+function [t,positions] = read_molPos3(filename,nframes)
 
 positions.Cdc42T = cell(nframes,1);
 positions.BemGEF42 = cell(nframes,1);
 positions.BemGEFm = cell(nframes,1);
 positions.BemGEFc = cell(nframes,1);
-positions.Yic = cell(nframes,1);
-positions.Yam = cell(nframes,1);
+positions.GAPi = cell(nframes,1);
+positions.GAPa = cell(nframes,1);
 
 t=nan(nframes,1);
 fid=fopen(filename);
@@ -57,14 +57,14 @@ while ~feof(fid)
     if ~isnan(currt) && isnan(t(frameid))
         t(frameid)=currt;
     end
-    positions.Yic{frameid} = [x,y];
+    positions.GAPi{frameid} = [x,y];
     
     currline = fgetl(fid);
     [currt,x,y]=entry_to_xyz(currline);
     if ~isnan(currt) && isnan(t(frameid))
         t(frameid)=currt;
     end
-    positions.Yam{frameid} = [x,y];
+    positions.GAPa{frameid} = [x,y];
 
     frameid=frameid+1;
 end
