@@ -1,12 +1,16 @@
-function make_movie_suddenly_drop_k3(filename,nframes,moviedir,moviename)
+filename = 'FigureData/Sample_file_suddenly_reduce_positive_feedback.xyz';
+nframes = 201; % maximum frames for the movie
+moviedir = 'Movie_S3'; mkdir(moviedir);
+moviename = 'Movie_S3';
+
 [t,positions]=read_molPos3(filename,nframes);
-t(1)=0;
 movObj = VideoWriter(sprintf('%s/%s',moviedir,moviename),'MPEG-4');
 movObj.FrameRate = 10;
 movObj.Quality = 50;
 open(movObj)
 figure('units','pixels','position',[0 0 1000 500])
 
+% Skip the first 500 seconds of callibration
 for i=51:nframes
     if isnan(t(i))
        break;
@@ -38,14 +42,15 @@ for i=51:nframes
     set(gca,'fontsize',20)
     axis square
     
+    % drop lambda3 at 600 seconds
     if t(i) >= 600
-        k3 = [500*ones(1,61),95*ones(1,i-61)];
+        lambda3 = [500*ones(1,61),95*ones(1,i-61)];
     else
-        k3 = [500*ones(1,i)];
+        lambda3 = [500*ones(1,i)];
     end 
     
     subplot(1,2,2);
-    plot((0:10:(i-1)*10)/60,k3,'k','linewidth',5);
+    plot((0:10:(i-1)*10)/60,lambda3,'k','linewidth',5);
     title('Strength of positive feedback')
     ylim([50,500]);
     xlim([500/60,2000/60]);
@@ -58,4 +63,3 @@ for i=51:nframes
     
 end
 close(movObj);
-end
