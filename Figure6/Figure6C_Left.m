@@ -57,4 +57,4 @@ xlabel('Time (min)'); ylabel('Clustering score'); xlim([0,Inf]); ylim([0,4.5]); 
 
 %% Plot k3 across time
 yyaxis right
-plot(time,lambda3,'linewidth', 4); ylim([0,550]); ylabel('\lambda_3(s^{-1})');
+plot(time,lambda3,'linewidth', 4); ylim([0,550]); ylabel('\lambda_1(s^{-1})');

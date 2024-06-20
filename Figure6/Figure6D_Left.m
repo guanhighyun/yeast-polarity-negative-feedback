@@ -9,6 +9,14 @@ nframes = 801;
 % The range of search radius for calculation of Ripley's K-function values
 r_vec = 0.1:0.1:2.5; 
 
+min_lambda3 = 95;
+max_lambda3 = 500;
+tstart = 600;
+tstop = 5000;
+duration = tstop-tstart;
+slope = (min_lambda3-max_lambda3)./duration;
+intercept = max_lambda3 - tstart.*slope;
+
 % Read molecular coordinates from each line of the .xyz file.
 % nframes: total number of time points in the simulation
 [t,coordinates]=read_molPos3(filename,nframes);
@@ -59,4 +67,5 @@ xlabel('Time (min)'); ylabel('Clustering score'); xlim([0,Inf]); ylim([0,4.5]); 
 
 %% Plot k3 across time
 yyaxis right
-plot(time,lambda3,'linewidth', 4); ylim([0,550]); ylabel('\lambda_3(s^{-1})'); ylim([0,550]); ylabel('\lambda_3(s^{-1})');
+plot(time,lambda3,'linewidth', 4); ylim([0,550]); ylabel('\lambda_3(s^{-1})'); ylim([0,550]); ylabel('\lambda_1(s^{-1})');
+box off
