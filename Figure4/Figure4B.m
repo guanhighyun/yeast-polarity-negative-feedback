@@ -1,7 +1,7 @@
 clear;
 
-n = 250;
-tfinal = 10000;
+n = 250; % Number of grids
+tfinal = 10000; % Final time point
 dt = 0.01;
 
 nt = tfinal/dt;
@@ -9,12 +9,12 @@ L = 5*pi;
 h = L/n;
 dt2 = dt/10;
 
-k0 = 0; % might need to reduce
-k1 = 0.16+0.08;
+k0 = 0; 
+k1 = 0.24;
 k2 = 0.14;
 k3 = 5;
-k4 = 0.01; %0.2
-k5 = 0.01; %1.2e-03;
+k4 = 0.01; 
+k5 = 0.01; 
 
 D_Ua = 0.0025;
 D_Ui = 0.25;

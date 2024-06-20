@@ -1,3 +1,4 @@
+% Include the first 400 secs of callibration time
 filename = 'FigureData/Sample_file_gradually_reduce_positive_feedback.xyz';
 nframes = 551; % maximum frames for the movie
 moviedir = 'Movie_S4'; mkdir(moviedir);
@@ -20,12 +21,11 @@ slope = (min_lambda3-max_lambda3)./duration;
 intercept = max_lambda3 - tstart.*slope;
 
 tstart_index = tstart/10+1;
-for i=tstart_index-10:nframes % 475
+for i=tstart_index-10:nframes 
     if isnan(t(i))
        break;
     end
     cla;
-        
  
     if ~isempty(positions.Cdc42T{i}) && ~isempty(positions.BemGEF42{i})
         all_active_x = [positions.Cdc42T{i}(:,1);positions.BemGEF42{i}(:,1)];

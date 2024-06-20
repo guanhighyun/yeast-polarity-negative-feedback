@@ -1,7 +1,7 @@
 %% Calculate time series of Ripley's K values
 % We will read the sample data file which includes coordinates of all molecules.
 % Lambda3 was suddenly reduced from 500 /s to 95/s.
-filename = 'FigureData/Sample_file_suddenly_reduce_positive_feedback.xyz';
+filename = '../FigureData/Sample_file_suddenly_reduce_positive_feedback.xyz';
 % Domain length
 L = 8.8623;
 % Maximum time frames

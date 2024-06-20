@@ -1,3 +1,4 @@
+% Include the first 400 secs of callibration time
 filename = 'FigureData/Sample_file_suddenly_reduce_positive_feedback.xyz';
 nframes = 201; % maximum frames for the movie
 moviedir = 'Movie_S3'; mkdir(moviedir);

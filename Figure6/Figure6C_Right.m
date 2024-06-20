@@ -1,5 +1,5 @@
 % Plot Cdc42-GTP distributions
-load('FigureData/Figure4C_coordinates.mat')
+load('../FigureData/Figure6C_coordinates.mat')
 figure('position',[300 300 1200 400]); L = 8.8623;
 tiledlayout(1,3,'tilespacing','compact');
 nexttile;
