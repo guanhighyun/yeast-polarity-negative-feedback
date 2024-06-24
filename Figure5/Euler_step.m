@@ -1,15 +1,15 @@
 function [Cci_output, Cmi_output, Cma_output, Gc_output, Gm_output, GmCma_output, Ii_output, Ia_output] = Euler_step(dt, Cci, Cmi, Cma, Gc, Gm, GmCma, Ii, Ia, D_Cci, D_Cmi, D_Cma, D_Gc, D_Gm, D_GmCma, D_Ii, D_Ia, Flk,...
-    k1a,k1b,k2a,k2b,k3,k4a,k4b,k5a,k5b,k6a,k6b,k6c,k7)
+    k8a,k8b,k10,k2,k1,k9a,k9b,k5a,k5b,k4,k3,k6,k7)
 % Reaction rate calculation
 
 Cci_output = Cci + dt*(k5b*Cmi - k5a*Cci);
-Cmi_output = Cmi + dt*((k2b + k6b.*Ia).*Cma + k5a*Cci - (k2a.*Gm + k3.*GmCma + k5b).*Cmi);
-Cma_output = Cma + dt*((k2a.*Gm + k3.*GmCma).*Cmi + k4b*GmCma - (k2b + k4a.*Gm + k7.*Gc + k6b.*Ia).*Cma);
-Gc_output = Gc + dt*(k1b*Gm - (k1a + k7.*Cma).*Gc);
-Gm_output = Gm + dt*(k1a*Gc + k4b*GmCma - (k1b + k4a.*Cma).*Gm);
-GmCma_output = GmCma + dt*((k4a.*Gm + k7.*Gc).*Cma - k4b.*GmCma);
-Ii_output = Ii + dt*(k6c*Ia - k6a.*Cma.*Ii);
-Ia_output = Ia + dt*(k6a.*Cma.*Ii - k6c*Ia);
+Cmi_output = Cmi + dt*((k2 + k3.*Ia).*Cma + k5a*Cci - (k10.*Gm + k1.*GmCma + k5b).*Cmi);
+Cma_output = Cma + dt*((k10.*Gm + k1.*GmCma).*Cmi + k9b*GmCma - (k2 + k9a.*Gm + k7.*Gc + k3.*Ia).*Cma);
+Gc_output = Gc + dt*(k8b*Gm - (k8a + k7.*Cma).*Gc);
+Gm_output = Gm + dt*(k8a*Gc + k9b*GmCma - (k8b + k9a.*Cma).*Gm);
+GmCma_output = GmCma + dt*((k9a.*Gm + k7.*Gc).*Cma - k9b.*GmCma);
+Ii_output = Ii + dt*(k6*Ia - k4.*Cma.*Ii);
+Ia_output = Ia + dt*(k4.*Cma.*Ii - k6*Ia);
 
 % Diffusion using Fourier approach
 Cci_output = diffusion_step(dt, Cci_output, D_Cci, Flk);

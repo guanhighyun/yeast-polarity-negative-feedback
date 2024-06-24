@@ -22,17 +22,17 @@ h = L/n;
 % Initial time step (for checking consistency)
 dt2 = dt/10;
 
-% Reaction rates
+% Reaction rates, not scaled by SF. 
 k0 = 0; 
-k1 = 0.24;
-k2 = 0.14;
-k3 = 5;
-k4 = 0.01; 
-k5 = 0.01;
+k1 = 0.24; % um^2/(s*zeptomole^2)
+k2 = 0.14; % /s
+k3 = 5; % um/(s*zeptomole)
+k4 = 0.01; % /s
+k5 = 0.01; % /s
 
 % Diffusion rates
-D_Ua = 0.0025;
-D_Ui = 0.25;
+D_Ua = 0.0025; % um^2/s
+D_Ui = 0.25; % um^2/s
 
 % Fourier space setup
 wx = 2 * pi / L * [0:n/2 -n/2+1:-1];

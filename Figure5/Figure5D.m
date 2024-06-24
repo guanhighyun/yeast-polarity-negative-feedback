@@ -1,26 +1,30 @@
 clear;
 
-uniform = 0;
-L = 5*pi;
-n = 250;
-tfinal = 5000;
-dt = 0.01;
-dt2 = dt/10;
-nt = tfinal/dt;
-h = L/n;
+uniform = 0; % if uniform initial condition, uniform = 1; if prepolarize initial condition, uniform = 0.
+L = 5*pi; % domain length
+n = 250; % Number of grids
+tfinal = 5000; % the final time point
+dt = 0.01; % time step
+dt2 = dt/10; % initial time step
+nt = tfinal/dt; % number of time points
+h = L/n; % spatial discretization
 
-k1a = 10; 
-k1b = 40; 
-k2a = 0.0382;
-k2b = 1;
-k4a = 0.059;
-k4b = 34.5262;
+% Scaling factor to convert zeptomole to molecules
+SF = 10^(-21)*6.02*10^(23);
+
+% Model parameters. Not scaled by SF.
+k8a = 10; 
+k8b = 40; 
+k10 = 0.0382;
+k2 = 1;
+k9a = 0.059;
+k9b = 34.5262;
 k5a = 36;
 k5b = 13;
 k7 = 1.8474;
-k6a = 0.001;
-k6b = 0.8;
-k6c = 0.01;
+k4 = 0.001;
+k3 = 0.8;
+k6 = 0.01;
 
 C_tc = 63.662;
 G_tc = 6.3662;
@@ -50,18 +54,18 @@ G_output = zeros(n,tfinal);
 % k3 setup
 t1 = 200/dt; % Time at which we started to reduce pheromone signal
 
-k3_1 = 10;
-k3_2 = 0.6;
-k3_3 = 0.6;
+k1_1 = 10;
+k1_2 = 0.6;
+k1_3 = 0.6;
 
-k3_eff = zeros(1, nt);
+k1_eff = zeros(1, nt);
 for i = 1:nt
     if (i < t1)
-        k3_eff(i) = k3_1;
+        k1_eff(i) = k1_1;
     elseif (i >= t1) && (i <= (tfinal-1000)/dt)
-        k3_eff(i) = k3_1 + (k3_2 - k3_1)/(tfinal/dt-t1-1000/dt)*(i-t1);
+        k1_eff(i) = k1_1 + (k1_2 - k1_1)/(tfinal/dt-t1-1000/dt)*(i-t1);
     else
-        k3_eff(i) = k3_2;
+        k1_eff(i) = k1_2;
     end
 end
 
@@ -86,18 +90,18 @@ Ii = I_tc*ones(n,1);
 Ia = zeros(n,1);
 
 [Cma_output, Ia_output] = run_Euler_step_detailed_model(dt2, Cci, Cmi, Cma, Gc, Gm, GmCma, Ii, Ia, D_Cci, D_Cmi, D_Cma, D_Gc, D_Gm, D_GmCma, D_Ii, D_Ia, Flk,...
-            k1a,k1b,k2a,k2b,k3_eff,k4a,k4b,k5a,k5b,k6a,k6b,k6c,k7,n,tfinal,nt,dt);
+            k8a,k8b,k10,k2,k1_eff,k9a,k9b,k5a,k5b,k4,k3,k6,k7,n,tfinal,nt,dt);
 
 figure('Position',[50 30 1000 900]); 
 subplot(2,1,1)
 hold on;
 grid off;
 box on;
-plot((1:nt)*dt/60, k3_eff/SF/SF, 'Color', [1 0 0], 'LineWidth', 3);
+plot((1:nt)*dt/60, k1_eff/SF, 'Color', [1 0 0], 'LineWidth', 3);
 xlim([0,Inf])
 
 xlabel('Time (min)', 'Interpreter', 'Latex');
-ylabel('$k_1 \left( \frac{\mu m^2}{s \cdot mol^2} \right)$', 'Interpreter','latex');
+ylabel('$k_1 \left( \frac{\mu m^2}{s} \right)$', 'Interpreter','latex');
 set(gca,'fontsize', 28); 
 set(gca,'linewidth', 3);
 

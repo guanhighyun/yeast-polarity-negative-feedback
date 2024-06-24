@@ -1,6 +1,6 @@
 clear; clc;
 % Load figure data
-inp_file = '../FigureData/Figure5B.mat';
+inp_file = '../FigureData/Figure5C.mat';
 load(inp_file);
 
 % Use the sum of active Cdc42 to draw regime boundary.
@@ -29,9 +29,9 @@ axis xy;
 colormap hot;
 imagesc(im);
 
-xlabel('$k_1 \left( \frac{\mu m^2}{s \cdot mol^2} \right)$', 'Interpreter','latex');
+xlabel('$k_1 \left( \frac{\mu m^2}{s} \right)$', 'Interpreter','latex');
 x_ticks = 1:20:length(k3_vals);
-x_ticklabels = string(round(k3_vals(x_ticks)/SF/SF,7));
+x_ticklabels = string(round(k3_vals(x_ticks)/SF,5));
 xticks(x_ticks);
 xticklabels(x_ticklabels);
 xlim([0, length(k3_vals)]);

@@ -1,5 +1,5 @@
 function [Cma_output, Ia_output] = run_Euler_step_detailed_model(dt2, Cci, Cmi, Cma, Gc, Gm, GmCma, Ii, Ia, D_Cci, D_Cmi, D_Cma, D_Gc, D_Gm, D_GmCma, D_Ii, D_Ia, Flk,...
-            k1a,k1b,k2a,k2b,k3_eff,k4a,k4b,k5a,k5b,k6a,k6b,k6c,k7,n,tfinal,nt,dt)
+            k8a,k8b,k10,k2,k1_eff,k9a,k9b,k5a,k5b,k4,k3,k6,k7,n,tfinal,nt,dt)
 
 Cci_output = nan(n,tfinal);
 Cmi_output = nan(n,tfinal);
@@ -18,14 +18,14 @@ for tidx = 1:nt
     lp = 0;      % Track status of simulation
     react_t = 0; % Internal reaction clock
     et = 1e-04; % Error tolerance
-    k3 = k3_eff(tidx);
+    k1 = k1_eff(tidx);
     while  lp ~= 2
         %dbstop if naninf
 
         [Ccih, Cmih, Cmah, Gch, Gmh, GmCmah, Iih, Iah] = Euler_step(dt2, Cci, Cmi, Cma, Gc, Gm, GmCma, Ii, Ia, D_Cci, D_Cmi, D_Cma, D_Gc, D_Gm, D_GmCma, D_Ii, D_Ia, Flk,...
-            k1a,k1b,k2a,k2b,k3,k4a,k4b,k5a,k5b,k6a,k6b,k6c,k7);
+            k8a,k8b,k10,k2,k1,k9a,k9b,k5a,k5b,k4,k3,k6,k7);
         [Ccih2, Cmih2, Cmah2, Gch2, Gmh2, GmCmah2, Iih2, Iah2] = Euler_step(dt2/2, Cci, Cmi, Cma, Gc, Gm, GmCma, Ii, Ia, D_Cci, D_Cmi, D_Cma, D_Gc, D_Gm, D_GmCma, D_Ii, D_Ia, Flk,...
-            k1a,k1b,k2a,k2b,k3,k4a,k4b,k5a,k5b,k6a,k6b,k6c,k7);
+            k8a,k8b,k10,k2,k1,k9a,k9b,k5a,k5b,k4,k3,k6,k7);
      
         % error checking
         Ccie = max(max(abs(Ccih   - Ccih2   )));

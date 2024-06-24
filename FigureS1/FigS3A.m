@@ -55,7 +55,7 @@ SF = 10^(-21)*6.02*10^(23);
 figure; plot(s_vals/SF/SF,sum_Ua_uni*SF*h,'r','LineWidth',4); hold on
 plot(s_vals/SF/SF,sum_Ua_prepo*SF*h,'r','LineWidth',4)
 ylabel('Total C_{GTP} (molecules)'); xlabel('$s(\frac{\mum^2}{s \cdot mol^2})$','Interpreter','latex')
-set(gca,'fontsize',20); xlim([0,Inf])
+set(gca,'fontsize',20); xlim([0,Inf]); ylim([0,Inf])
 axis square
 
 function Ua_output = run_Euler_step(uniform,dt,dt2,k0,k1,k2,k3,k4,k5,s,D_Ua,D_Ui,n,h,noise,Flk,tfinal,nt)
