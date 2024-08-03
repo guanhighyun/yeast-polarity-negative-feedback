@@ -86,7 +86,7 @@ Ia = zeros(n,1);
 [Cma_output, Ia_output] = run_Euler_step_detailed_model(dt2, Cci, Cmi, Cma, Gc, Gm, GmCma, Ii, Ia, D_Cci, D_Cmi, D_Cma, D_Gc, D_Gm, D_GmCma, D_Ii, D_Ia, Flk,...
             k8a,k8b,k10,k2,k1_eff,k9a,k9b,k5a,k5b,k4,k3,k6,k7,n,tfinal,nt,dt);
 
-SF = 10^(-21)*6.02*10^(23);
+SF = 5;
 figure('Position',[50 30 1000 900]); 
 subplot(2,1,1)
 hold on;
@@ -95,8 +95,8 @@ box on;
 plot((1:nt)*dt/60, k1_eff/SF, 'Color', [1 0 0], 'LineWidth', 3);
 xlim([0,Inf])
 
-xlabel('Time (min)', 'Interpreter', 'Latex');
-ylabel('$k_1 \left( \frac{\mu m^2}{s} \right)$', 'Interpreter','latex');
+xlabel('Time (min)', 'Interpreter', 'None');
+ylabel('$k_1 \left( \frac{\mu m}{s} \right)$', 'Interpreter','latex');
 set(gca,'fontsize', 28); 
 set(gca,'linewidth', 3);
 

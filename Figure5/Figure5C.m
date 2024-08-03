@@ -20,7 +20,8 @@ im = zeros(size(im1));
 im(im1 == 1) = 3; % im1 = 1, Bistable regime & Polarized regime
 im(im2 == 1) = 1.3; % im2 = 1, Polarized regime
 
-SF = 10^(-21)*6.02*10^(23);
+% scaling factor to convert 1/5 molecules to 1 molecule
+SF = 5;
 s = size(data_ampl_sum);
 
 fig = figure('Position', [50 50 8*s(2) 8*s(1)]);
@@ -29,7 +30,7 @@ axis xy;
 colormap hot;
 imagesc(im);
 
-xlabel('$k_1 \left( \frac{\mu m^2}{s} \right)$', 'Interpreter','latex');
+xlabel('$k_1 \left( \frac{\mu m}{s} \right)$', 'Interpreter','latex');
 x_ticks = 1:20:length(k3_vals);
 x_ticklabels = string(round(k3_vals(x_ticks)/SF,5));
 xticks(x_ticks);

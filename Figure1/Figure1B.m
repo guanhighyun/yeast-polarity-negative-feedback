@@ -14,18 +14,18 @@ bgAx.Layout.TileSpan = [1 2];
 
 % First subplot (ax1)
 ax1 = nexttile(1,[1,3]);
-shadedErrorBar(DfU_step_down.x__fr_nM_, DfU_step_down.AveDfU, DfU_step_down.StdError, 'lineprops', {'-r.','linewidth',3,'markersize',20}); hold on;
-shadedErrorBar(DfU_step_up.x__fr_nM_, DfU_step_up.AveDfU, DfU_step_up.StdError, 'lineprops', {'.-k','linewidth',3,'markersize',20});
+shadedErrorBar(DfU_step_down.x__fr_nM_, DfU_step_down.AveDfU, DfU_step_down.StdError, 'lineprops', {'-r.','linewidth',3,'markersize',18}); hold on;
+shadedErrorBar(DfU_step_up.x__fr_nM_, DfU_step_up.AveDfU, DfU_step_up.StdError, 'lineprops', {'.-k','linewidth',3,'markersize',18});
 ax1.Box = 'off';
 xline(ax1, 20, ':', 'LineWidth', 4);
-xlim(ax1, [0 20]); set(gca,'fontsize',20)
+xlim(ax1, [0 20]); set(gca,'fontsize',18)
 ylabel('Deviation from uniformity')
 xlabel('Pheromone (nM)')
 
 % Second subplot (ax2)
 ax2 = nexttile;
-shadedErrorBar(DfU_step_down.x__fr_nM_, DfU_step_down.AveDfU, DfU_step_down.StdError, 'lineprops', {'-r.','linewidth',3,'markersize',20}); hold on;
-shadedErrorBar(DfU_step_up.x__fr_nM_, DfU_step_up.AveDfU, DfU_step_up.StdError, 'lineprops', {'.-k','linewidth',3,'markersize',20});
+shadedErrorBar(DfU_step_down.x__fr_nM_, DfU_step_down.AveDfU, DfU_step_down.StdError, 'lineprops', {'-r.','linewidth',3,'markersize',18}); hold on;
+shadedErrorBar(DfU_step_up.x__fr_nM_, DfU_step_up.AveDfU, DfU_step_up.StdError, 'lineprops', {'.-k','linewidth',3,'markersize',18});
 xline(ax2, 45, ':', 'LineWidth', 4);
 ax2.YAxis.Visible = 'off';
 ax2.Box = 'off';

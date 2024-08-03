@@ -6,6 +6,8 @@ shadedErrorBar(Lambda3_uniform_initial_condition,mean(K_uniform_initial_conditio
 xlabel('\lambda_1 (s^{-1})')
 ylabel('Clustering score')
 xlim([50,110]);
-ylim([0,5]);
+ylim([0,6]);
 set(gca,'linewidth',3);
 set(gca,'fontsize',22);
+title('Bifurcation diagram with varying \lambda_1','FontSize',30)
+legend('Gradually deceasing \lambda_1','Gradually increasing \lambda_1')

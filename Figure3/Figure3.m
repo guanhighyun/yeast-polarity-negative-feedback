@@ -140,6 +140,7 @@ xlabel('Time')
 
 figure(1)
 plot(x2out,x1out,'--r','LineWidth',3)
+legend({'X-nullcline','C_{GTP}-nullcline (s = 0)','C_{GTP}-nullcline (s = 5)','Trajectories for C_{GTP} versus X',''},'fontsize',20)
 
 %Drop to low signal.
 s = sl;

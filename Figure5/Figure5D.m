@@ -9,8 +9,8 @@ dt2 = dt/10; % initial time step
 nt = tfinal/dt; % number of time points
 h = L/n; % spatial discretization
 
-% Scaling factor to convert zeptomole to molecules
-SF = 10^(-21)*6.02*10^(23);
+% Scaling factor to convert 1/5 molecules to 1 molecule
+SF = 5;
 
 % Model parameters. Not scaled by SF.
 k8a = 10; 
@@ -100,8 +100,8 @@ box on;
 plot((1:nt)*dt/60, k1_eff/SF, 'Color', [1 0 0], 'LineWidth', 3);
 xlim([0,Inf])
 
-xlabel('Time (min)', 'Interpreter', 'Latex');
-ylabel('$k_1 \left( \frac{\mu m^2}{s} \right)$', 'Interpreter','latex');
+xlabel('Time (min)', 'Interpreter', 'None');
+ylabel('$k_1 \left( \frac{\mu m}{s} \right)$', 'Interpreter','latex');
 set(gca,'fontsize', 28); 
 set(gca,'linewidth', 3);
 
