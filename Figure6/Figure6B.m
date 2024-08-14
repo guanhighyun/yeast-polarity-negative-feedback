@@ -9,5 +9,5 @@ xlim([50,110]);
 ylim([0,6]);
 set(gca,'linewidth',3);
 set(gca,'fontsize',22);
-title('Bifurcation diagram with varying \lambda_1','FontSize',30)
-legend('Gradually deceasing \lambda_1','Gradually increasing \lambda_1')
+title('Bifurcation diagram for \lambda_1','FontSize',30)
+legend('Deceasing \lambda_1','Increasing \lambda_1')
