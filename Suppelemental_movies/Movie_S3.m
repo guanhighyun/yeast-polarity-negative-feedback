@@ -43,20 +43,20 @@ for i=51:nframes
     set(gca,'fontsize',20)
     axis square
     
-    % drop lambda3 at 600 seconds
+    % drop lambda1 at 600 seconds
     if t(i) >= 600
-        lambda3 = [500*ones(1,61),95*ones(1,i-61)];
+        lambda1 = [500*ones(1,61),95*ones(1,i-61)];
     else
-        lambda3 = [500*ones(1,i)];
+        lambda1 = [500*ones(1,i)];
     end 
     
     subplot(1,2,2);
-    plot((0:10:(i-1)*10)/60,lambda3,'k','linewidth',5);
+    plot((0:10:(i-1)*10)/60,lambda1,'k','linewidth',5);
     title('Strength of positive feedback')
     ylim([50,500]);
     xlim([500/60,2000/60]);
     xlabel('Time (min)')
-    ylabel('\lambda_3(s^{-1})')
+    ylabel('\lambda_1(s^{-1})')
     set(gca,'fontsize',20)
     axis square
     writeVideo(movObj,getframe(gcf));

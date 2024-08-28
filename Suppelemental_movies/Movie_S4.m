@@ -12,13 +12,13 @@ movObj.Quality = 50;
 open(movObj)
 figure('units','pixels','position',[0 0 1000 500])
 
-min_lambda3 = 95;
-max_lambda3 = 500;
+min_lambda1 = 95;
+max_lambda1 = 500;
 tstart = 600;
 tstop = 5000;
 duration = tstop-tstart;
-slope = (min_lambda3-max_lambda3)./duration;
-intercept = max_lambda3 - tstart.*slope;
+slope = (min_lambda1-max_lambda1)./duration;
+intercept = max_lambda1 - tstart.*slope;
 
 tstart_index = tstart/10+1;
 for i=tstart_index-10:nframes 
@@ -70,7 +70,7 @@ for i=tstart_index-10:nframes
     ylim([50,500]);
     xlim([500/60,(nframes-1)*10/60]);
     xlabel('Time (min)')
-    ylabel('\lambda_3(s^{-1})')
+    ylabel('\lambda_1(s^{-1})')
     set(gca,'fontsize',20)
     axis square
     writeVideo(movObj,getframe(gcf));

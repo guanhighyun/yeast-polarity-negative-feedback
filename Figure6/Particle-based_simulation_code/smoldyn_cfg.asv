@@ -1,4 +1,4 @@
-function smoldyn_cfg(fileprefix,directory,tstop,samplingrate,n_Cdc42,n_BemGEF,n_GAP,P1,k2,random_seed)
+function smoldyn_cfg(fileprefix,directory,tstop,samplingrate,n_Cdc42,n_BemGEF,n_GAP,P3,k2b,random_seed)
 % Adapted from "make_smoldyn_cfg.m" from Ramirez SA, Pablo M, Burk S,
 % Lew DJ, Elston TC (2021). PLoS Comput Biol 17(7): e1008525.
 
@@ -20,8 +20,8 @@ k9b = 40;
 k5a = 36;
 k5b = 13;
 P7 = 256*dt;
-P4 = 0.15*dt;
-P3 = 110*dt;
+P6a = 0.15*dt;
+P6b = 110*dt;
 k6 = 0.01;
 Dm = 0.0025;
 Dc = 15;
@@ -39,15 +39,15 @@ fprintf(fid,'variable L = 8.8623\n');
 fprintf(fid,'variable k8a = %g\n',k8a);
 fprintf(fid,'variable k8b = %g\n',k8b);
 fprintf(fid,'variable P10 = %g\n',P10);
-fprintf(fid,'variable k2 = %g\n',k2);
-fprintf(fid,'variable P1 = %g\n',P1);
+fprintf(fid,'variable k2b = %g\n',k2b);
+fprintf(fid,'variable P3 = %g\n',P3);
 fprintf(fid,'variable P9a = %g\n',P9a);
 fprintf(fid,'variable k9b = %g\n',k9b);
 fprintf(fid,'variable k5a = %g\n',k5a);
 fprintf(fid,'variable k5b = %g\n',k5b);
 fprintf(fid,'variable P7  = %g\n',P7);
-fprintf(fid,'variable P4 = %g\n',P4);
-fprintf(fid,'variable P3 = %g\n',P3);
+fprintf(fid,'variable P6a = %g\n',P6a);
+fprintf(fid,'variable P6b = %g\n',P6b);
 fprintf(fid,'variable k6 = %g\n',k6);
 
 % Define domain boundaries
@@ -128,12 +128,12 @@ fprintf(fid,'reaction_probability Cdc42Dm_2_T_catBy_BemGEFm 1\n');
 fprintf(fid,'product_placement Cdc42Dm_2_T_catBy_BemGEFm unbindrad rho+rho_eps\n');
 
 % Cdc42T -> Cdc42Dm
-fprintf(fid,'reaction Cdc42T_2_Cdc42Dm Cdc42T -> Cdc42Dm k2\n');
+fprintf(fid,'reaction Cdc42T_2_Cdc42Dm Cdc42T -> Cdc42Dm k2b\n');
 
 % Cdc42T-Bem1-GEF + Cdc42Dm -> Cdc42T-Bem1-GEF + Cdc42T
 fprintf(fid,'reaction Cdc42Dm_2_T_bindTo_BemGEF42 Cdc42Dm + BemGEF42 -> complex_Cdc42Dm_BemGEF42\n');
 fprintf(fid,'reaction Cdc42Dm_2_T_catBy_BemGEF42 complex_Cdc42Dm_BemGEF42 -> Cdc42T + BemGEF42\n');
-fprintf(fid,'reaction_probability Cdc42Dm_2_T_bindTo_BemGEF42 P1\n');
+fprintf(fid,'reaction_probability Cdc42Dm_2_T_bindTo_BemGEF42 P3\n');
 fprintf(fid,'binding_radius Cdc42Dm_2_T_bindTo_BemGEF42 rho\n');
 fprintf(fid,'reaction_probability Cdc42Dm_2_T_catBy_BemGEF42 1\n');
 fprintf(fid,'product_placement Cdc42Dm_2_T_catBy_BemGEF42 unbindrad rho+rho_eps\n');
@@ -152,7 +152,7 @@ fprintf(fid,'binding_radius make_BemGEF42_fromc rho\n');
 
 % Cdc42T + GAPi -> Cdc42T + GAPa
 fprintf(fid,'reaction GAPi_bind_2_Cdc42T Cdc42T + GAPi -> complex_GAPi_Cdc42T\n');
-fprintf(fid,'reaction_probability GAPi_bind_2_Cdc42T P4\n');
+fprintf(fid,'reaction_probability GAPi_bind_2_Cdc42T P6a\n');
 fprintf(fid,'binding_radius GAPi_bind_2_Cdc42T rho\n');
 fprintf(fid,'reaction GAPi_2_GAPa_cat_By_Cdc42T complex_GAPi_Cdc42T -> GAPa + Cdc42T\n');
 fprintf(fid,'reaction_probability GAPi_2_GAPa_cat_By_Cdc42T 1\n');
@@ -160,7 +160,7 @@ fprintf(fid,'product_placement GAPi_2_GAPa_cat_By_Cdc42T unbindrad rho+rho_eps\n
 
 % Cdc42T + GAPa -> Cdc42Dm + GAPa
 fprintf(fid,'reaction Cdc42T_bind_2_GAPa Cdc42T + GAPa -> complex_Cdc42T_GAPa\n');
-fprintf(fid,'reaction_probability Cdc42T_bind_2_GAPa P3\n');
+fprintf(fid,'reaction_probability Cdc42T_bind_2_GAPa P6b\n');
 fprintf(fid,'binding_radius Cdc42T_bind_2_GAPa rho\n');
 fprintf(fid,'reaction Cdc42T_2_D_cat_By_GAPa complex_Cdc42T_GAPa -> GAPa + Cdc42Dm\n');
 fprintf(fid,'reaction_probability Cdc42T_2_D_cat_By_GAPa 1\n');
